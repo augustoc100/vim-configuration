@@ -1,4 +1,23 @@
-execute pathogen#infect()
+"zf zE
+
+call plug#begin('~/.vim/plugged')
+Plug 'dyng/ctrlsf.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'https://github.com/nanotech/jellybeans.vim.git'
+Plug 'junegunn/vim-github-dashboard'
+Plug 'mattn/emmet-vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'osyo-manga/vim-over'
+call plug#end()
 
 
 " Fair Vim
@@ -19,6 +38,8 @@ let mapleader=","
 
 " mapper to emmet
 let g:user_emmet_leader_key=","
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,erb EmmetInstall
 
 " Looks weird, but it could work
 inoremap jj <Esc>
@@ -144,29 +165,28 @@ autocmd VimResized * :wincmd =
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
-nnoremap <leader>ll :VtrSendLinesToRunner <cr>
-nnoremap <leader>la :VtrAttachToPane 
+" nnoremap <leader>ll :VtrSendLinesToRunner <cr>
+" nnoremap <leader>la :VtrAttachToPane 
 
 "attath a comand tmux with vim
-nnoremap <leader>rb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd': 'irb'}<cr>
-    
+" nnoremap <leader>rb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd': 'irb'}<cr>
 
-"mapper to copy to another think
-vnoremap <leader>y "+y
-nnoremap <Leader>t :!bundle exec rspec % <cr>
 
 "rspec with vim and tmux
 
-let g:rspec_command = "call VtrSendCommand('rspec {spec}')"
-" let g:rspec_command = "Dispatch rspec {spec}"
+"test
 
-" map <Leader>t :call RunCurrentSpecFile()<CR>
-" map <Leader>s :call RunNearestSpec()<CR>
-" map <Leader>l :call RunLastSpec()<CR>
-" map <Leader>a :call RunAllSpecs()<CR>
+nnoremap <leader>t :w <cr> :! bundle exec rspec %  <cr>
+
 
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
-" let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-" let g:ctrlp_use_caching = 0
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+
+"clipboard
+map <Leader>y "+y <cr>
+
+" %s
+map <Leader>s :OverCommandLine <cr> %s/
 
